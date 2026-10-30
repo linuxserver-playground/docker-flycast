@@ -15,6 +15,11 @@ upstream:
   notes:
     type: github_release
     repo: flyinghead/flycast
+  sponsor:
+  - name: Flycast
+    url: https://www.paypal.com/paypalme/FlycastEmu
+  - name: Flycast (Buy Me a Coffee)
+    url: https://www.buymeacoffee.com/hhwtpernwq
 
 release:
   branch: master

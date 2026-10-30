@@ -19,7 +19,11 @@ RUN \
     /usr/share/selkies/www/icon.png \
     https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/flycast-logo.png && \
   echo "**** install packages ****" && \
-  DOWNLOAD_URL=$(curl -sX GET "https://api.github.com/repos/flyinghead/flycast/releases/latest" \
+  if [ -z ${FLYCAST_VERSION+x} ]; then \
+    FLYCAST_VERSION=$(curl -sX GET "https://api.github.com/repos/flyinghead/flycast/releases/latest" \
+      | jq -r '.tag_name'); \
+  fi && \
+  DOWNLOAD_URL=$(curl -sX GET "https://api.github.com/repos/flyinghead/flycast/releases/tags/${FLYCAST_VERSION}" \
     | jq -r 'first(.assets[].browser_download_url | select(test("AppImage")))') && \
   curl -o \
     /tmp/fly.app -L \

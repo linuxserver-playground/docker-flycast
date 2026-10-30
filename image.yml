@@ -10,6 +10,8 @@ upstream:
   version:
     type: github_release
     repo: flyinghead/flycast
+    require_assets:
+      - asset: '\.AppImage$'
   notes:
     type: github_release
     repo: flyinghead/flycast
